@@ -68,7 +68,17 @@ export const useGeminiNanoChat = () => {
         async start(controller: ReadableStreamDefaultController) {
           try {
             for await (const chunk of promptStreaming) {
-              controller.enqueue(chunk);
+              // Remove non-ASCII characters (including emoji)
+              const cleanedChunk = typeof chunk === "string"
+                ? chunk.replace(/[^\x00-\x7F]+/g, "")
+                : chunk;
+                
+              // console.log("-");
+              // console.log(chunk);
+              // console.log(cleanedChunk);
+              controller.enqueue(cleanedChunk.replace(/\[/g, ' [')
+              .replace(/\](?=\S)/g, '] ')
+              .replace(/\s+/g, ' '));
             }
           } catch (error) {
             controller.error(error);
