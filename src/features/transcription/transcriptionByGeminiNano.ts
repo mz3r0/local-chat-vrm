@@ -12,24 +12,31 @@ export const useTranscriptionByGeminiNano = () => {
   const mediaStreamRef = useRef<MediaStream | null>(null);
 
   const load = useCallback(async () => {
-    if (
-      (await window.LanguageModel.availability({
-        expectedInputs: [{ type: "audio" }],
-      })) !== "available"
-    ) {
-      throw Error("Gemini Nano (Audio) is not ready");
-    }
-
-    if (sessionRef.current === null) {
-      sessionRef.current = await window.LanguageModel.create({
+    try {
+      const availability = await window.LanguageModel.availability({
         expectedInputs: [{ type: "audio" }],
       });
-    }
+      if (availability !== "available") {
+        console.warn("Gemini Nano (Audio) is not ready");
+        console.log("Availability:", availability);
+        return { success: false, message: "Gemini Nano (Audio) is not ready" };
+      }
 
-    if (mediaStreamRef.current === null) {
-      mediaStreamRef.current = await navigator.mediaDevices.getUserMedia({
-        audio: true,
-      });
+      if (sessionRef.current === null) {
+        sessionRef.current = await window.LanguageModel.create({
+          expectedInputs: [{ type: "audio" }],
+        });
+      }
+
+      if (mediaStreamRef.current === null) {
+        mediaStreamRef.current = await navigator.mediaDevices.getUserMedia({
+          audio: true,
+        });
+      }
+      return { success: true };
+    } catch (error) {
+      console.error("Error loading Gemini Nano (Audio):", error);
+      return { success: false, message: "Error loading Gemini Nano (Audio)" };
     }
   }, []);
 
