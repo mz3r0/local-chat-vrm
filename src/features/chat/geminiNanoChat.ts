@@ -1,5 +1,6 @@
 import { useCallback, useState } from "react";
 import { Message } from "../messages/messages";
+import { option_input, option_output } from "../constants/options";
 
 declare global {
   interface Window {
@@ -9,19 +10,17 @@ declare global {
           expectedInputs: { type: "image" | "audio" }[];
         } | void
       ) => Promise<"available" | "downloadable" | "unavailable">;
-      create: ({
-        expectedInputs,
-        temperature,
-        topK,
-        initialPrompts,
-      }?: {
-        expectedInputs?: { type: "image" | "audio" }[];
+      create: (options?: {
+        expectedInputs?: { type: string; languages?: string[] }[];
+        expectedOutputs?: { type: string; languages?: string[] }[];
         temperature?: number;
         topK?: number;
         initialPrompts?: {
           role: "system" | "user" | "assistant";
           content: string;
         }[];
+        // Allow additional properties
+        [key: string]: any;
       }) => Promise<GeminiNanoSession>;
     };
   }
@@ -49,7 +48,11 @@ export const useGeminiNanoChat = () => {
           initialPrompts: [{ role: "system" as const, content: systemPrompt }],
         }
       : {};
-    setSession(await window.LanguageModel.create(options));
+    setSession(await window.LanguageModel.create({
+      ...options,
+      ...option_input,
+      ...option_output,
+    }));
   }, []);
 
   const getChatResponseStream = useCallback(
