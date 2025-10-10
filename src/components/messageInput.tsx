@@ -34,6 +34,7 @@ export const MessageInput = ({
               onPointerUp={onPointerUpMicButton}
             />
             <input
+              name="chat-bar"
               type="text"
               placeholder="Ask me anything!"
               onChange={onChangeUserMessage}
