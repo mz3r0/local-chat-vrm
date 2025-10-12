@@ -17,8 +17,7 @@ export const useTranscriptionByGeminiNano = () => {
         expectedInputs: [{ type: "audio" }],
       });
       if (availability !== "available") {
-        console.warn("Gemini Nano (Audio) is not ready");
-        console.log("Availability:", availability);
+        console.warn("Gemini Nano (Audio) is not ready. Model status:", availability);
         return { success: false, message: "Gemini Nano (Audio) is not ready" };
       }
 
@@ -35,7 +34,8 @@ export const useTranscriptionByGeminiNano = () => {
       }
       return { success: true };
     } catch (error) {
-      console.error("Error loading Gemini Nano (Audio):", error);
+        console.error("Gemini Nano (Audio): Most likely missing property when accessing window.LanguageModel. Error details:", error);
+        alert("Error loading Gemini Nano. See console for details.");
       return { success: false, message: "Error loading Gemini Nano (Audio)" };
     }
   }, []);

@@ -39,8 +39,10 @@ export const useGeminiNanoChat = () => {
   const [session, setSession] = useState<GeminiNanoSession | null>(null);
 
   const load = useCallback(async (systemPrompt: string) => {
-    if ((await window.LanguageModel.availability()) !== "available") {
-      throw Error("Gemini Nano is not ready");
+    const availability = await window.LanguageModel.availability();
+    if (availability !== "available") {
+      alert("Gemini Nano is not ready. See console for details.");
+      throw Error(`Gemini Nano (Audio) is not ready. Model status: ${availability}`);;
     }
 
     const options = systemPrompt
@@ -58,7 +60,7 @@ export const useGeminiNanoChat = () => {
   const getChatResponseStream = useCallback(
     async (messageLog: Message[]) => {
       if (session === null) {
-        throw Error("Gemini Nano is not loaded");
+        throw Error("Can't create Gemini Nano session, is the model loaded?");
       }
 
       const prompt = messageLog[messageLog.length - 1].content;
