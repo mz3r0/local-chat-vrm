@@ -24,8 +24,8 @@ The live version on GitHub pages wasn't usable for me prior to creating a fork.
 I decided to experiment with it locally, and restore functionality only for text inputs.
 Later, I noticed a muffled audio issue on a device used to test the new working [live version](https://mz3r0.github.io/local-chat-vrm).
 
-In the following sections I relate my experience with this LocalChatVRM.
-Coming from a Python background, it was an important first-time real exposure to TypeScript, especially thanks to AI.
+In the [MINILOG.md](https://github.com/mz3r0/local-chat-vrm/blob/23c9151217100d53cfe82b3bab7854c1a2e2dadc/MINILOG.md) file I relate my experience with this project.
+Coming from a Python background, it was an important first-time real exposure to TypeScript.
 
 ## Execution
 
