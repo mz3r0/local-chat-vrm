@@ -1,9 +1,13 @@
 # LocalChatVRM
 
-LocalChatVRM is a project primarily for technical sharing and demonstration purposes. It was used for a demo exhibition at Google I/O 2025.
+LocalChatVRM was used for a demo exhibition at Google I/O 2025. **The original repository is archived.**
 
-**This repository is archived.**
-If you wish to make changes to LocalChatVRM, please feel free to fork the repository and develop it further.
+The live version on GitHub pages wasn't usable for me prior to creating a fork.
+I decided to experiment with it locally, and restore functionality only for text inputs.
+Later, I noticed a muffled audio issue on a device used to test the new working [live version](https://mz3r0.github.io/local-chat-vrm).
+
+In the following sections I relate my experience with this LocalChatVRM.
+Coming from a Python background, it was an important first-time real exposure to TypeScript, especially thanks to AI.
 
 ---
 
@@ -26,31 +30,17 @@ The main features of LocalChatVRM utilize the following technologies:
 
 A live demo is available on GitHub Pages. Please note that it will only function correctly in environments where the Chrome Built-in AI Multimodality APIs are supported.
 
-https://pixiv.github.io/local-chat-vrm/
+https://mz3r0.github.io/local-chat-vrm/
 
 ## Execution
 
-To run in a local environment, clone or download this repository.
+Clone or download this repository.
 
-```bash
-git clone git@github.com:pixiv/local-chat-vrm.git
-```
+Install the necessary packages: `npm install`
 
-Install the necessary packages.
+Once finished, start the development web server: `npm run dev`
 
-```bash
-npm install
-```
-
-After the packages are installed, start the development web server with the following command:
-
-```bash
-npm run dev
-```
-
-Once running, access the following URL in your browser to verify operation:
-
-[http://localhost:5173](http://localhost:5173)
+The app should start running at: [http://localhost:5173](http://localhost:5173)
 
 -----
 
@@ -61,6 +51,13 @@ LocalChatVRM uses Chrome Built-in AI APIs for text generation.
 Configuration of Google Chrome is required to use Chrome Built-in AI. Please refer to the following link for setup instructions:
 
 https://developer.chrome.com/docs/ai/get-started
+
+As a TLDR, esnure that Chrome uses the latest version, and enable the following flags:
+- chrome://flags/#optimization-guide-on-device-model
+- chrome://flags/#prompt-api-for-gemini-nano-multimodal-input
+- chrome://flags/#prompt-api-for-gemini-nano
+
+> Note: I ran into an issue during testing the above on a fresh install. Will update once I've confirmed the minimum setup reequired.
 
 ## Chrome Built-in AI Multimodality APIs
 
