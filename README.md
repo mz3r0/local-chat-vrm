@@ -22,14 +22,13 @@ The main features of LocalChatVRM utilize the following technologies:
 
 The live version on GitHub pages wasn't usable for me prior to creating a fork.
 I decided to experiment with it locally, and restore functionality only for text inputs.
-Later, I noticed a muffled audio issue on a device used to test the new working [live version](https://mz3r0.github.io/local-chat-vrm).
-
-In the [MINILOG.md](https://github.com/mz3r0/local-chat-vrm/blob/23c9151217100d53cfe82b3bab7854c1a2e2dadc/MINILOG.md) file I relate my experience with this project.
-Coming from a Python background, it was an important first-time real exposure to TypeScript.
+Later, I noticed a muffled audio issue on a test device. In the
+[MINILOG.md](https://github.com/mz3r0/local-chat-vrm/blob/23c9151217100d53cfe82b3bab7854c1a2e2dadc/MINILOG.md)
+file I relate my experience with this project.
 
 ## Execution
 
-A live demo is available on GitHub Pages: https://mz3r0.github.io/local-chat-vrm/
+A live demo was available, but Google's APIs are still in development. Any breaking change may render the live demo unusable. Thus, it may be restored in the future, depending on the state of the APIs.
 
 > Please note that it will only function correctly in environments where the Chrome Built-in AI Multimodality APIs are supported.
 
